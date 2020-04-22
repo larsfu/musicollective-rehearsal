@@ -221,4 +221,4 @@ app.post('/upload', rawparser, function(req, res) {
 	});
 });
 
-app.listen(3001);
+app.listen(config.port);

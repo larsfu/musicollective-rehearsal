@@ -5,5 +5,6 @@
 		"password" : "",
 		"database" : ""
 	},
-	"sessionKey": "Please choose something random"
+	"sessionKey": "Please choose something random",
+	"port":       3000
 }
