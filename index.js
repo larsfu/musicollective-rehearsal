@@ -12,18 +12,13 @@ const winston = require('winston');
 const child = require('child_process');
 const sanitize = require("sanitize-filename");
 
+const config = require('./config.json');
+
 var mail = require('sendmail')({
 	devHost:'localhost',
 	devPort: 25,
 	silent: true
 });
-
-var dbconfig = {
-	host     : 'localhost',
-	user     : 'rehearsal',
-	password : 'sgvUV4aJhJM1V0vd',
-	database : 'musicollective'
-};
 
 
 var ulogger = winston.createLogger({
@@ -58,7 +53,7 @@ var jserrorlogger = winston.createLogger({
 
 var dbc;
 function handleDisconnect() {
-    dbc = mysql.createConnection(dbconfig);
+    dbc = mysql.createConnection(config.db);
     dbc.connect( function onConnect(err) {
         if (err) {
             console.log('Error when connecting to database:', err);
@@ -88,7 +83,7 @@ app.use("/fa", express.static(path.join(__dirname, '/node_modules/font-awesome')
 app.use("/md", express.static(path.join(__dirname, '/node_modules/markdown-it/dist')));
 app.use("/bowser", express.static(path.join(__dirname, '/node_modules/bowser')));
 app.use("/opus-recorder", express.static(path.join(__dirname, '/node_modules/opus-recorder/dist')));
-app.use("/waveform-playlist", express.static(path.join(__dirname, '/waveform-playlist-fixed/dist/waveform-playlist')));
+app.use("/waveform-playlist", express.static(path.join(__dirname, '/waveform-playlist/dist/waveform-playlist')));
 
 
 /*app.use(session({
@@ -100,7 +95,7 @@ app.use("/waveform-playlist", express.static(path.join(__dirname, '/waveform-pla
 
 app.use(cookieSession({
   name: 'session',
-  keys: ['wrong horse battery staple lol'],
+  keys: [config.sessionKey],
 
   // Cookie Options
   maxAge: 24 * 60 * 60 * 1000 // 24 hours
@@ -226,4 +221,4 @@ app.post('/upload', rawparser, function(req, res) {
 	});
 });
 
-app.listen(3000);
+app.listen(3001);

@@ -1,3 +1,12 @@
+# Hide for security reasons
+config.json
+
+# Data
+uploads
+songs
+
+package-lock.json
+
 # Logs
 logs
 *.log
