@@ -5,6 +5,7 @@
 		"password" : "",
 		"database" : ""
 	},
-	"sessionKey": "Please choose something random",
-	"port":       3000
+	"sessionKey":   "Please choose something random",
+	"port":         3000,
+	"enableUpload": true,
 }

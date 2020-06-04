@@ -112,7 +112,8 @@ app.get('/', function(req, res) {
 		res.render('player', {
 			session: req.session, 
 			song: tree.children.map(a => a.name), 
-			resources: JSON.stringify(data)
+			resources: JSON.stringify(data),
+			enableUpload: config.enableUpload
 		});
 	} else {
 		var err = '';
