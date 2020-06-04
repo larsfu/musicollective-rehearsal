@@ -255,11 +255,14 @@
       return true;
 
     // space to toggle playback
-    if(ev.keyCode == 32 && ev.repeat == false) {
-      if(!playlist.isPlaying() && !isRecording)
-        ee.emit("play");
-      else if (playlist.isPlaying() && !isRecording)
-        ee.emit("pause");
+    if(ev.keyCode == 32) {
+      if(ev.repeat == false && !isRecording)
+      {
+        if(!playlist.isPlaying())
+          ee.emit("play");
+        else
+          ee.emit("pause");
+      }
       return false;
     }
 
