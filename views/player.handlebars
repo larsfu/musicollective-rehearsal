@@ -222,6 +222,7 @@
     $('.btn-record').popover({trigger: 'hover focus'});
     $('#send-feedback').click(sendFeedback);
     $('#send-track').click(upload);
+    $('body').keydown(handleKeydown);
   })
   var md = window.markdownit();
 	var playlist = WaveformPlaylist.init({
@@ -239,6 +240,25 @@
 	  },
 	  zoomLevels: [500, 1000, 3000, 5000],
   });
+
+  var handleKeydown = function(ev) {
+    var ev = ev.originalEvent;
+
+    // disable all shortcuts when feedback modal is open
+    if(($("#feedbackModal").data('bs.modal') || {})._isShown)
+      return true;
+
+    // space to toggle playback
+    if(ev.keyCode == 32 && ev.repeat == false) {
+      if(!playlist.isPlaying() && !isRecording)
+        ee.emit("play");
+      else if (playlist.isPlaying() && !isRecording)
+        ee.emit("pause");
+      return false;
+    }
+
+
+  };
 
   var sendFeedback = function() {
     if($("#send-feedback").hasClass("disabled")) return;
