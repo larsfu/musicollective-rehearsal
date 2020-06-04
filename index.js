@@ -85,14 +85,6 @@ app.use("/bowser", express.static(path.join(__dirname, '/node_modules/bowser')))
 app.use("/opus-recorder", express.static(path.join(__dirname, '/node_modules/opus-recorder/dist')));
 app.use("/waveform-playlist", express.static(path.join(__dirname, '/waveform-playlist/dist/waveform-playlist')));
 
-
-/*app.use(session({
-	secret: 'wrong horse battery staple lol',
-	resave: true,
-	saveUninitialized: true
-}));*/
-
-
 app.use(cookieSession({
   name: 'session',
   keys: [config.sessionKey],
