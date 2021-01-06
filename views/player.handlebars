@@ -78,107 +78,111 @@
 
 
 <div class="container">
-  <div class="wrapper">
-    <article class="post">
-      <header class="post-header">
-        <h1 class="post-title">Digitale Probe – Musicollective</h1>
-        <p class="lead">Wähle ein Stück aus, dann kannst du die Lautstärke der Stimmen für ein optimales Übe-Erlebnis einzeln regulieren. Viel Spaß beim Proben!</p>
-      </header>
-      <div class="post-content">
-        <div id="top-bar" class="playlist-top-bar">
-  <div class="playlist-toolbar">
-  	<div class="btn-group" style="min-width:20em">
-  	<select class="form-control select-songs" autocomplete="off">
-  		<option value="-1" selected>Stück wählen...</option>
-  		{{#each song}}
-  		<option value="{{@index}}">{{this}}</option>
-  		{{/each}}
-  	</select>
-  	</div>
-    <div class="btn-group">
-      <span class="btn-pause btn btn-warning"><i class="fa fa-pause"></i></span>
-      <span class="btn-play btn btn-success"><i class="fa fa-play"></i></span>
-      <span class="btn-stop btn btn-danger"><i class="fa fa-stop"></i></span>
-      <span class="btn-rewind btn btn-success"><i class="fa fa-fast-backward"></i></span>
-      <span tabindex="0" class="btn-record btn btn-danger" data-toggle="popover" title="Tipps" data-placement="top" data-content="In einigen Browsern funktioniert die Aufnahmefunktion derzeit noch nicht. Um ein brauchbares Ergebnis zu erzielen, verwende Kopfhörer, damit die restliche Musik nicht mit aufgenommen wird. Die Aufnahme beginnt bei der ausgewählten Stelle, der Cursor läuft dabei nicht mit."><i class="fa fa-microphone"></i></span>
-      <!--<span class="btn-fast-forward btn btn-success"><i class="fa fa-fast-forward"></i></span>-->
-    </div>
-    &nbsp;<span class="audio-pos">00:00:00.0</span>
-    <!--<span class="loading-message" style="display:none">
-    	&nbsp;&nbsp;<i class="fa fa-circle-o-notch fa-spin fa-fw"></i></i>Laden... <span class="loading-progress"></span>
-    </span>-->&nbsp;
-    <div id="loading-progress" class="progress" style="display:inline-block;width:192px;opacity:0;">
-  	<div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" style="width: 0%;" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100">25%</div>
-	</div>
-  </div>
-</div>
-<div class="row">
-  <div id="playlist" class="col-lg-7"></div>
-  <div class="card col" id="lyrics-container" style="display:none;height:200px;">
-    <div class="card-header">
-      Liedtext
-    </div>
-    <div id="lyrics" class="card-body"></div>
-  </div>
-</div>
-    </article>
-    <footer class="small text-secondary"><!--Probleme? Schreib’ eine <a href="mailto:lars@musicollective.de?subject=Digitale%20Probe">Mail an Lars</a> <span class="emoji">🙂</span>-->
-      <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#feedbackModal">Feedback</button>
-    </footer>
-
-
-<!-- Feedback Modal -->
-<div class="modal fade" id="feedbackModal" tabindex="-1" role="dialog" aria-labelledby="feedbackModalLabel" aria-hidden="true">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="feedbackModalLabel">Feedback</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body">
-        <p>Hast du Anregungen, Probleme oder Fragen? Hinterlass’ uns hier eine Nachricht und wir kommen so schnell wie möglich auf dich zurück.</p>
-        <form>
-          <div class="form-group">
-            <textarea class="form-control" id="message-text" placeholder="Deine Nachricht"></textarea>
+  <article class="post">
+    <header class="post-header">
+      <h1 class="post-title">Digitale Probe – Musicollective</h1>
+      <p class="lead">Wähle ein Stück aus, dann kannst du die Lautstärke der Stimmen für ein optimales Übe-Erlebnis
+        einzeln regulieren. Viel Spaß beim Proben!</p>
+    </header>
+    <div class="post-content">
+      <div id="top-bar" class="playlist-top-bar">
+        <div class="playlist-toolbar d-flex">
+          <div class="btn-group align-self-center" style="min-width:20em">
+            <select class="form-control select-songs" autocomplete="off">
+              <option value="-1" selected>Stück wählen...</option>
+              {{#each song}}
+              <option value="{{@index}}">{{this}}</option>
+              {{/each}}
+            </select>
           </div>
-        </form>
-      </div>
-      <div class="modal-footer">
-        <span id="feedback-status"></span>
-        <div class="spinner-border" id="feedback-spinner" style="display:none;"></div>
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Schließen</button>
-        <button type="button" class="btn btn-primary" id="send-feedback">Absenden</button>
-      </div>
-    </div>
-  </div>
-</div>
-
-<!-- Upload Modal -->
-<div class="modal fade" id="uploadModal" data-backdrop="static" tabindex="-1" role="dialog" aria-labelledby="uploadModalLabel" aria-hidden="true">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="uploadModalLabel">Aufnahme hochladen</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body">
-        <p>Du kannst deine Aufnahme hochladen, damit wir sie uns anhören können. Vorher solltest du sie natürlich auch selbst einmal abgespielt haben. Je nach Internetverbindung kann der Upload eine Weile dauern.</p>
-        <div class="progress">
-          <div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" style="width: 0%;" aria-valuenow="0" aria-valuemin="0" id="upload-progress" aria-valuemax="100">0%</div>
+          <div class="btn-group align-self-center pl-2">
+            <span class="btn-pause btn btn-warning"><i class="fa fa-pause"></i></span>
+            <span class="btn-play btn btn-success"><i class="fa fa-play"></i></span>
+            <span class="btn-stop btn btn-danger"><i class="fa fa-stop"></i></span>
+            <span class="btn-rewind btn btn-success"><i class="fa fa-fast-backward"></i></span>
+            <span tabindex="0" class="btn-record btn btn-danger" data-toggle="popover" title="Tipps"
+              data-placement="top"
+              data-content="In einigen Browsern funktioniert die Aufnahmefunktion derzeit noch nicht. Um ein brauchbares Ergebnis zu erzielen, verwende Kopfhörer, damit die restliche Musik nicht mit aufgenommen wird. Die Aufnahme beginnt bei der ausgewählten Stelle, der Cursor läuft dabei nicht mit."><i
+                class="fa fa-microphone"></i></span>
+          </div>
+          <div class="audio-pos align-self-center pl-2">00:00:00.0</div>
+          <div id="loading-progress" class="progress align-self-center m-3" style="width:192px;opacity:0;">
+            <div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" style="width: 0%;"
+              aria-valuenow="0" aria-valuemin="0" aria-valuemax="100">0%</div>
+          </div>
         </div>
       </div>
-      <div class="modal-footer">
-        <span id="upload-status"></span>
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Abbrechen</button>
-        <button type="button" class="btn btn-primary" id="send-track">Hochladen</button>
+      <div class="row">
+        <div id="playlist" class="col-lg-7"></div>
+        <div class="card col" id="lyrics-container" style="display:none;height:200px;">
+          <div class="card-header">
+            Liedtext
+          </div>
+          <div id="lyrics" class="card-body"></div>
+        </div>
+      </div>
+  </article>
+  <footer class="small text-secondary">
+    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#feedbackModal">Feedback oder Fragen</button>
+  </footer>
+
+
+  <!-- Feedback Modal -->
+  <div class="modal fade" id="feedbackModal" tabindex="-1" role="dialog" aria-labelledby="feedbackModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="feedbackModalLabel">Feedback</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <p>Hast du Anregungen, Probleme oder Fragen? Hinterlass’ uns hier eine Nachricht und wir kommen so schnell
+            wie möglich auf dich zurück.</p>
+          <form>
+            <div class="form-group">
+              <textarea class="form-control" id="message-text" placeholder="Deine Nachricht"></textarea>
+            </div>
+          </form>
+        </div>
+        <div class="modal-footer">
+          <span id="feedback-status"></span>
+          <div class="spinner-border" id="feedback-spinner" style="display:none;"></div>
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Schließen</button>
+          <button type="button" class="btn btn-primary" id="send-feedback">Absenden</button>
+        </div>
       </div>
     </div>
   </div>
-</div>
+
+  <!-- Upload Modal -->
+  <div class="modal fade" id="uploadModal" data-backdrop="static" tabindex="-1" role="dialog"
+    aria-labelledby="uploadModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="uploadModalLabel">Aufnahme hochladen</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <p>Du kannst deine Aufnahme hochladen, damit wir sie uns anhören können. Vorher solltest du sie natürlich
+            auch selbst einmal abgespielt haben. Je nach Internetverbindung kann der Upload eine Weile dauern.</p>
+          <div class="progress">
+            <div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" style="width: 0%;"
+              aria-valuenow="0" aria-valuemin="0" id="upload-progress" aria-valuemax="100">0%</div>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <span id="upload-status"></span>
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Abbrechen</button>
+          <button type="button" class="btn btn-primary" id="send-track">Hochladen</button>
+        </div>
+      </div>
+    </div>
   </div>
 </div>
 

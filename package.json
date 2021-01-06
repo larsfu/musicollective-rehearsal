@@ -9,24 +9,24 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "argon2": "^0.26.2",
-    "bootstrap": "^4.4.1",
-    "bowser": "^2.9.0",
+    "argon2": "^0.27.1",
+    "bootstrap": "^4.5.3",
+    "bowser": "^2.11.0",
     "compression": "^1.7.4",
     "cookie-session": "^1.4.0",
-    "directory-tree": "^2.2.4",
+    "directory-tree": "^2.2.5",
     "express": "^4.17.1",
-    "express-fileupload": "^1.1.7-alpha.3",
-    "express-handlebars": "^4.0.3",
+    "express-fileupload": "^1.2.0",
+    "express-handlebars": "^5.2.0",
     "express-session": "^1.17.1",
     "font-awesome": "^4.7.0",
-    "jquery": "^3.5.0",
+    "jquery": "^3.5.1",
     "list-directories": "^1.1.0",
-    "markdown-it": "^10.0.0",
+    "markdown-it": "^12.0.4",
     "mysql": "^2.18.1",
     "opusenc.js": "^0.1.10",
     "sanitize-filename": "^1.6.3",
     "sendmail": "^1.6.1",
-    "winston": "^3.2.1"
+    "winston": "^3.3.3"
   }
 }
