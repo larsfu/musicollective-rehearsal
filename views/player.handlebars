@@ -45,6 +45,27 @@
     padding:0;
   }
 
+  .lyricsmarker {
+    cursor: pointer;
+    border-radius: 0.1em;
+    transition: background-color 0.1s;
+  }
+
+  .lyricsmarker:hover {
+    background-color: #eee;
+  }
+
+  .lyricsmarker_time {
+    opacity: 0;
+    font-size:0.7em;
+    color: #666;
+    transition: opacity 0.1s;
+  }
+
+  .lyricsmarker:hover + .lyricsmarker_time {
+    opacity: 1;
+  }
+
   #lyrics {
     overflow:auto;
   }
@@ -234,7 +255,9 @@
     $('#send-track').click(upload);
     $('body').keydown(handleKeydown);
   })
-  var md = window.markdownit();
+  var md = window.markdownit({
+    html: true,
+  });
 	var playlist = WaveformPlaylist.init({
 	  samplesPerPixel: 5000,
 	  waveHeight: 100,
