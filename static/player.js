@@ -224,7 +224,6 @@ function loadnew(song) {
             return `<span data-time='${t}' class='lyricsmarker'>${p3} </span>
                     <span class='lyricsmarker_time'>${p1}:${p2}</span>`;
           });
-          console.log(data);
           $("#lyrics" ).html( md.render(data) );
         });
       }
