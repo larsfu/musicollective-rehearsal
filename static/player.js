@@ -219,7 +219,7 @@ function loadnew(song) {
     if(resources.songs[song].text != null) {
         $.get(resources.songs[song].text, function( data ) {
           var marker = "";
-          data = data.replace(/\[(\d{1,2})\:(\d{2})\]\s*(.*)(?<!\\)/g, function(match, p1, p2, p3){
+          data = data.replace(/\[(\d{1,2})\:(\d{2})\]\s*([^\\\n]*)/g, function(match, p1, p2, p3){
             var t = parseInt(p1) * 60 + parseInt(p2);
             return `<span data-time='${t}' class='lyricsmarker'>${p3} </span>
                     <span class='lyricsmarker_time'>${p1}:${p2}</span>`;
